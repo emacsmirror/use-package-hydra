@@ -7,5 +7,4 @@ stages:
 ert:
   stage: test
   script:
-  - make
   - make test
