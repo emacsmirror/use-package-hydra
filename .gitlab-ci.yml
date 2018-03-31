@@ -1,3 +1,5 @@
+image: iquiw/alpine-emacs
+
 stages:
   - test
   - deploy
