@@ -1,0 +1,9 @@
+stages:
+  - test
+  - deploy
+
+ert:
+  stage: test
+  script:
+  - make
+  - make test
