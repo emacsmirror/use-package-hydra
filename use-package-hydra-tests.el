@@ -40,8 +40,8 @@
       max-lisp-eval-depth 8000
       max-specpdl-size 8000)
 
-(ert-deftest use-package-test-normalize/:hydra ()
-  ;; basic example
+;; basic example
+(ert-deftest use-package-hydra--normalize/basic ()
   (should (equal (use-package-hydra--normalize
                   'foopkg :hydra (hydra-foo (foo-mode-map "<f2>")
                                             "Zoom"
@@ -50,56 +50,70 @@
                  '((hydra-foo (foo-mode-map "<f2>")
                               "Zoom"
                               ("g" text-scale-increase "in")
-                              ("l" text-scale-decrease "out")))))
-  ;; omits docstring
+                              ("l" text-scale-decrease "out"))))))
+
+;; omits docstring
+(ert-deftest use-package-hydra--normalize/no-docstring ()
   (should (equal (use-package-hydra--normalize
                   'foopkg :hydra (hydra-foo (foo-mode-map "<f2>")
                                             ("g" text-scale-increase "in")
                                             ("l" text-scale-decrease "out")))
                  '((hydra-foo (foo-mode-map "<f2>")
                               ("g" text-scale-increase "in")
-                              ("l" text-scale-decrease "out")))))
-  ;; nil for body-map and body-key
+                              ("l" text-scale-decrease "out"))))))
+
+;; nil for body-map and body-key
+(ert-deftest use-package-hydra--normalize/nil-body-map-nil-body-key ()
   (should (equal (use-package-hydra--normalize
                   'foopkg :hydra (hydra-foo (nil ni)
                                             ("g" text-scale-increase "in")
                                             ("l" text-scale-decrease "out")))
                  '((hydra-foo (nil nil)
                               ("g" text-scale-increase "in")
-                              ("l" text-scale-decrease "out")))))
-  ;; omits body-map and body-key completely
+                              ("l" text-scale-decrease "out"))))))
+
+;; omits body-map and body-key completely
+(ert-deftest use-package-hydra--normalize/no-body-map-no-body-key ()
   (should (equal (use-package-hydra--normalize
                   'foopkg :hydra (hydra-foo ()
                                             ("g" text-scale-increase "in")
                                             ("l" text-scale-decrease "out")))
                  '((hydra-foo ()
                               ("g" text-scale-increase "in")
-                              ("l" text-scale-decrease "out")))))
-  ;; body only has a plist with a color
+                              ("l" text-scale-decrease "out"))))))
+
+;; body only has a plist with a color
+(ert-deftest use-package-hydra--normalize/body-only-plist-color ()
   (should (equal (use-package-hydra--normalize
                   'foopkg :hydra (hydra-foo (:color pink)
                                             ("g" text-scale-increase "in")
                                             ("l" text-scale-decrease "out")))
                  '((hydra-foo (:color pink)
                               ("g" text-scale-increase "in")
-                              ("l" text-scale-decrease "out")))))
-  ;; omits head-hint
+                              ("l" text-scale-decrease "out"))))))
+
+;; omits head-hint
+(ert-deftest use-package-hydra--normalize/no-head-hint ()
   (should (equal (use-package-hydra--normalize
                   'foopkg :hydra (hydra-foo (foo-mode-map "<f2>")
                                             ("g" text-scale-increase)
                                             ("l" text-scale-decrease)))
                  '((hydra-foo (foo-mode-map "<f2>")
                               ("g" text-scale-increase)
-                              ("l" text-scale-decrease)))))
-  ;; has plist for heads
+                              ("l" text-scale-decrease))))))
+
+;; has plist for heads
+(ert-deftest use-package-hydra--normalize/heads-plist ()
   (should (equal (use-package-hydra--normalize
                   'foopkg :hydra (hydra-foo (foo-mode-map "<f2>")
                                             ("g" text-scale-increase "in" :bind nil)
                                             ("l" text-scale-decrease "out" :bind nil)))
                  '((hydra-foo (foo-mode-map "<f2>")
                               ("g" text-scale-increase "in" :bind nil)
-                              ("l" text-scale-decrease "out" :bind nil)))))
-  ;; omits head-hint and has plist for heads
+                              ("l" text-scale-decrease "out" :bind nil))))))
+
+;; omits head-hint and has plist for heads
+(ert-deftest use-package-hydra--normalize/no-head-hint-heads-plist ()
   (should (equal (use-package-hydra--normalize
                   'foopkg :hydra (hydra-foo (foo-mode-map "<f2>")
                                             ("g" text-scale-increase :bind nil)
