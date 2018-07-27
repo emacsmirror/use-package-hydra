@@ -1,0 +1,57 @@
+* use-package-hydra
+
+This package adds the =:hydra= keyword to the =use-package= macro.
+
+** Usage
+
+You can define [[https://github.com/abo-abo/hydra][Hydras]] directly in the =use-package= definition. The
+=:hydra= keyword expects the same arguments as =defhydra= does.
+
+You can define a single hydra, or a list of hydras.
+
+Binding a key to a hydra is similar as with =defhydra=. You can
+specify the map and the key in the hydra itself, or you can use the
+=use-package= =:bind= keyword to bind a key to the =<hydra-name>/body=
+function.
+
+** Examples
+
+#+begin_src emacs-lisp :tangle yes
+  (use-package yasnippet
+    :after hydra
+    :bind (:map yas-minor-mode-map ("<f2>" . hydra-yas/body))
+    :hydra (hydra-yas (:color blue :hint nil)
+            "
+                ^YASnippets^
+  --------------------------------------------
+    Modes:    Load/Visit:    Actions:
+
+   _g_lobal  _d_irectory    _i_nsert
+   _m_inor   _f_ile         _t_ryout
+   _e_xtra   _l_ist         _n_ew
+           _a_ll
+  "
+            ("d" yas-load-directory)
+            ("e" yas-activate-extra-mode)
+            ("i" yas-insert-snippet)
+            ("f" yas-visit-snippet-file :color blue)
+            ("n" yas-new-snippet)
+            ("t" yas-tryout-snippet)
+            ("l" yas-describe-tables)
+            ("g" yas/global-mode)
+            ("m" yas/minor-mode)
+            ("a" yas-reload-all)))
+#+end_src
+
+** Installation
+
+You can use =use-package= itself to install this extension.
+
+#+begin_src emacs-lisp :tangle yes
+  (use-package use-package-hydra
+    :ensure t)
+#+end_src
+
+** License
+
+This package is published under [[LICENSE][GPL3]].
