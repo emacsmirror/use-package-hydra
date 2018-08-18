@@ -1,0 +1,16 @@
+* use-package-hydra v0.1
+
+This is the initial release of use-package-hydra. It adds the =:hydra=
+keyword to the =use-package= macro.
+
+For more info about hydra, visit https://github.com/abo-abo/hydra.
+
+Info about use-package can be fount at
+https://github.com/jwiegley/use-package.
+
+---
+
+Local variables:
+coding: utf-8
+mode: org
+end:
