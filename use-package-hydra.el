@@ -1,15 +1,15 @@
-;;; use-package-hydra.el --- Support for the :hydra keyword
+;;; use-package-hydra.el --- Adds :hydra keyword to use-package macro
 
-;; Copyright (C) 2012-2018 John Wiegley
+;; Copyright (C) 2018 Toon Claes
 
 ;; Author: Toon Claes <toon@iotcl.com>
-;; Maintainer: John Wiegley <johnw@newartisans.com>
+;; Maintainer: Toon Claes <toon@iotcl.com>
 ;; Created: 6 Jan 2018
-;; Modified: 18 Feb 2018
-;; Version: 1.0
+;; Modified: 18 Aug 2018
+;; Version: 0.1
 ;; Package-Requires: ((emacs "24.3") (use-package "2.4"))
-;; Keywords: dotemacs startup speed config package
-;; URL: https://github.com/jwiegley/use-package
+;; Keywords: dotemacs startup speed config package hydra keychords
+;; URL: https://gitlab.com/to1ne/use-package-hydra
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
