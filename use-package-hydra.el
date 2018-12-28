@@ -8,7 +8,7 @@
 ;; Modified: 18 Aug 2018
 ;; Version: 0.1
 ;; Package-Requires: ((emacs "24.3") (use-package "2.4"))
-;; Keywords: dotemacs startup speed config package hydra keychords
+;; Keywords: convenience extensions tools
 ;; URL: https://gitlab.com/to1ne/use-package-hydra
 
 ;; This program is free software; you can redistribute it and/or
@@ -39,7 +39,6 @@
   "Build hydra name for the package NAME."
   (cl-gentemp (concat "hydra-" (symbol-name name))))
 
-;;;###autoload
 (defun use-package-hydra--normalize (name _keyword args)
   "Normalize the ARGS to be a list hydras.
 It accepts a single hydra, or a list of hydras.  It is optional
