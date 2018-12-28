@@ -77,7 +77,8 @@ from NAME."
 
 ;;;###autoload
 (defun use-package-handler/:hydra (name keyword args rest state)
-  "Generate defhydra code for hydra keyword."
+  "Generate defhydra with NAME for `:hydra' KEYWORD.
+ARGS, REST, and STATE are prepared by `use-package-normalize/:hydra'."
   (use-package-concat
    (mapcar #'(lambda (def) `(defhydra ,@def))
            args)
